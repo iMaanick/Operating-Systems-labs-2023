@@ -105,12 +105,12 @@ void Host::process() {
         getWolfNum();
         if (m_connection.Read(&msg, sizeof(msg))) {
             std::cout << "Goat number: " << msg.num << std::endl;
-            if (msg.state == 0) {
+            if (msg.state == State::ALIVE) {
                 if (std::abs(m_wolf_num - msg.num) > 70)
-                    msg.state = 1;
+                    msg.state = State::DEAD;
             } else {
                 if (std::abs(m_wolf_num - msg.num) <= 20)
-                    msg.state = 0;
+                    msg.state = State::ALIVE;
                 else {
                     std::cout << "Game over." << std::endl;
                     msg.num = -1;
@@ -119,7 +119,7 @@ void Host::process() {
                     break;
                 }
             }
-            if (msg.state == 0)
+            if (msg.state == State::ALIVE)
                 std::cout << "Goat is alive" << std::endl;
             else
                 std::cout << "Goat is dead" << std::endl;

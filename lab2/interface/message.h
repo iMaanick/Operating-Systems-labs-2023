@@ -2,13 +2,16 @@
 #define OS_LABS_MESSAGE_H
 
 
-
+enum class State {  
+    ALIVE,
+    DEAD
+};
 
 struct Message {
-    int state;
+    State state;
     int num;
 
-    Message(int st = 0, int num = 0) : state(st), num(num) {
+    Message(State st = State::ALIVE, int num = 0) : state(st), num(num) {
     }
 };
 

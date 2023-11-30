@@ -45,7 +45,7 @@ void Client::start() {
 
         std::random_device rd;
         std::mt19937 mt(rd());
-        if (msg.state == 0) {
+        if (msg.state == State::ALIVE) {
             std::uniform_int_distribution<int> dist(1, 100);
             msg.num = dist(mt);
         } else {
